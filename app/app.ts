@@ -1,7 +1,12 @@
 import {Component} from '@angular/core';
-import {Platform, ionicBootstrap} from 'ionic-angular';
+import {Platform, ionicBootstrap, MenuController} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {HomePage} from './pages/home/home';
+import {BancosPage} from './pages/bancos/bancos';
+import {ContasPage} from './pages/contas/contas';
+import {PgformasPage} from './pages/pgformas/pgformas';
+import {CaixaPage} from './pages/caixa/caixa';
+import {MovimentoPage} from './pages/movimento/movimento';
 
 
 @Component({
@@ -16,25 +21,26 @@ export class MyApp {
     icon: string
   }>;
 
-  home: any     = HomePage;
-  rootPage: any = this.home;
+  rootPage: any = HomePage;
 
-  constructor(platform: Platform) {
+  constructor(platform: Platform, private menuCtrl: MenuController) {
     this.pages = [
-      {component: HomePage,
-      title: 'Início',
-      icon: 'home'}
+      {component: HomePage,      title: 'Início',              icon: 'home'},
+      {component: BancosPage,    title: 'Bancos',              icon: 'ios-briefcase'},
+      {component: ContasPage,    title: 'Contas',              icon: 'ios-folder-open'},
+      {component: PgformasPage,  title: 'Formas de Pagamento', icon: 'bookmarks'},
+      {component: MovimentoPage, title: 'Movimento',           icon: 'cart'},
+      {component: CaixaPage,     title: 'Caixa',               icon: 'cash'}
     ];
 
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you cmean do any higher level native things you might need.
       StatusBar.styleDefault();
     });
   }
 
-  openPage(page): void {
-    this.rootPage = page;
+  openPage(page: any): void {
+    this.rootPage = page.component;
+    this.menuCtrl.close();
   }
 
 }

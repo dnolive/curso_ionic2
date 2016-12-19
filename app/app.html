@@ -1,6 +1,6 @@
 <ion-menu [content]="menuContent">
 
-  <ion-toolbar (click) = "clicou()">
+  <ion-toolbar>
     <ion-title>Menu Principal</ion-title>
   </ion-toolbar>
 
@@ -8,12 +8,13 @@
 
     <ion-list>
 
-      <ion-button ion-item (click)="openPage(home)" menuClose>
-          Início
-
-      </ion-button>
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon name="{{p.icon}}"></ion-icon>
+          {{ p.title }}
+      </button>
 
     </ion-list>
+
   </ion-content>
 
 </ion-menu>

@@ -1,0 +1,25 @@
+<ion-navbar *navbar>
+  <ion-buttons start>
+    <button (click)="fechar()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-buttons>
+
+  <ion-title>Editar Conta</ion-title>
+</ion-navbar>
+
+<ion-content padding class="contas-modal">
+
+  <ion-list>
+
+    <ion-label stacked>Descrição</ion-label>
+    <ion-input type="text"></ion-input>
+
+  </ion-list>
+
+  <button block>
+    <ion-icon name="done-all"></ion-icon>
+    Salvar
+  </button>
+
+</ion-content>

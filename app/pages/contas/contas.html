@@ -1,0 +1,25 @@
+<ion-navbar *navbar>
+  <ion-buttons start>
+    <button (click)="fechar()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-buttons>
+  
+  <ion-title>Plano de Contas</ion-title>
+</ion-navbar>
+
+<ion-content padding class="contas">
+
+  <ion-list>
+
+    <ion-item *ngFor="let item of lista">
+      {{item.descricao}}
+    </ion-item>
+
+  </ion-list>
+
+  <button fab fab-right fab-bottom danger (click)="abrirTela()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+
+</ion-content>
