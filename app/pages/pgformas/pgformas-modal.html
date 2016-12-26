@@ -1,0 +1,44 @@
+<ion-navbar *navbar>
+  <ion-buttons start>
+    <button (click)="fechar()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-buttons>
+
+  <ion-title>Editar Forma de Pagamento</ion-title>
+</ion-navbar>
+
+<ion-content padding class="pgformas-modal">
+
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked small>Descrição</ion-label>
+      <ion-input type="text" [(ngModel)]="pgforma.nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked small>Integrar com Banco</ion-label>
+      <ion-toggle [(ngModel)]="pgforma.integrarBanco"
+        checked="{{pgforma.integrarBanco =='S'}}">
+      </ion-toggle>
+    </ion-item>
+
+    <ion-item >
+      <ion-label stacked small>Banco</ion-label>
+      <ion-select [(ngModel)]="pgforma.banco" cancelText="Não" okText="Sim">
+        <ion-option *ngFor="let banco of bancos" [value]="id">
+          {{banco.nome}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+  <button block (click)="salvar(pgforma)">
+    <ion-icon name="done-all"></ion-icon>
+    Salvar
+  </button>
+
+</ion-content>

@@ -13,7 +13,7 @@ export class ContasModalPage {
   constructor(private nav: NavController,
     private view: ViewController, private params: NavParams) {
 
-    this.conta = params.get("param") || {nome : ""};
+    this.conta = params.get("param") || new Conta();
   }
 
   salvar() : void {

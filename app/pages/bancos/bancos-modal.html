@@ -1,0 +1,37 @@
+<ion-navbar *navbar>
+  <ion-buttons start>
+    <button (click)="fechar()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-buttons>
+
+  <ion-title>Editar Banco</ion-title>
+</ion-navbar>
+
+<ion-content padding class="bancos-modal">
+
+  <ion-list solid>
+
+    <ion-item>
+      <ion-label stacked small>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="banco.nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked small>Agência</ion-label>
+      <ion-input type="text" [(ngModel)]="banco.agencia"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked small>Saldo Inicial</ion-label>
+      <ion-input type="number" [(ngModel)]="banco.saldoInicial"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <button block (click)="salvar(banco)">
+    <ion-icon name="done-all"></ion-icon>
+    Salvar
+  </button>
+
+</ion-content>

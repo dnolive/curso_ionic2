@@ -4,7 +4,7 @@ import {StatusBar} from 'ionic-native';
 import {HomePage} from './pages/home/home';
 import {BancosPage} from './pages/bancos/bancos';
 import {ContasPage} from './pages/contas/contas';
-import {PgformasPage} from './pages/pgformas/pgformas';
+import {PgFormasPage} from './pages/pgformas/pgformas';
 import {CaixaPage} from './pages/caixa/caixa';
 import {MovimentoPage} from './pages/movimento/movimento';
 
@@ -28,7 +28,7 @@ export class MyApp {
       {component: HomePage,      title: 'Início',              icon: 'home'},
       {component: BancosPage,    title: 'Bancos',              icon: 'ios-briefcase'},
       {component: ContasPage,    title: 'Contas',              icon: 'ios-folder-open'},
-      {component: PgformasPage,  title: 'Formas de Pagamento', icon: 'bookmarks'},
+      {component: PgFormasPage,  title: 'Formas de Pagamento', icon: 'bookmarks'},
       {component: MovimentoPage, title: 'Movimento',           icon: 'cart'},
       {component: CaixaPage,     title: 'Caixa',               icon: 'cash'}
     ];

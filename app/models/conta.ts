@@ -1,4 +1,4 @@
-import { Modelo } from "../bases/modelo";
+import { Modelo } from "../bases/bases";
 
 export class Conta extends Modelo {
 
@@ -11,17 +11,18 @@ export class Conta extends Modelo {
     this._tipo = "D";
   }
 
-  public get nome(): string {
+  public get nome() : string {
     return this._nome;
   }
   public set nome(nome: string) {
     this._nome = nome;
   }
 
-  public get tipo(): string {
+  public get tipo() : string {
     return this._tipo;
   }
   public set tipo(tipo: string) {
     this._tipo = tipo;
   }
+
 }

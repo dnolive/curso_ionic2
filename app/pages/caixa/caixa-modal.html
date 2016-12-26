@@ -1,0 +1,57 @@
+<ion-navbar *navbar>
+  <ion-buttons start>
+    <button (click)="fechar()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-buttons>
+
+  <ion-title>Lançamento do Caixa</ion-title>
+</ion-navbar>
+
+<ion-content padding class="caixa-modal">
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked small>Tipo</ion-label>
+      <ion-select [(ngModel)]="caixa.tipo">
+        <ion-option value="D">Despesa</ion-option>
+        <ion-option value="R">Receita</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked small>Data</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY"
+        cancelText="Cancelar" doneText="Confirmar"
+        [(ngModel)]="caixa.data">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked small>Histórico</ion-label>
+      <ion-input type="text" [(ngModel)]="caixa.historico"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked small>Valor</ion-label>
+      <ion-input type="number" [(ngModel)]="caixa.valor"></ion-input>
+    </ion-item>
+
+    <ion-item >
+      <ion-label stacked small>Conta Caixa</ion-label>
+      <ion-select [(ngModel)]="caixa.conta" cancelText="Cancelar" okText="Confirmar">
+        <ion-option *ngFor="let conta of contas" value="{{conta.id}}">
+          {{conta.nome}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+  <button block (click)="salvar(caixa)">
+    <ion-icon name="done-all"></ion-icon>
+    Salvar
+  </button>
+
+</ion-content>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ViewController, Modal, Alert, Toast } from 'ionic-angular';
-import { Contas } from '../../dao/contas';
+import { ContasDao } from '../../dao/contas-dao';
 import { ContasModalPage } from '../contas/contas-modal';
 
 @Component({
@@ -9,45 +9,37 @@ import { ContasModalPage } from '../contas/contas-modal';
 
 export class ContasPage {
 
-  private contas: Contas;
   private lista: Array<any>;
 
   constructor(private nav: NavController, private view: ViewController) {
-
-    this.contas = new Contas();
-    this.contas.retornar((dados) => {
+    new ContasDao().retornar((dados) => {
       this.lista = dados;
     });
-
   }
 
   incluir(): void {
     let modal = Modal.create(ContasModalPage);
 
     modal.onDismiss((dados) => {
-      if (dados) {
-        this.contas.incluir(dados, (conta) => {
-          this.lista.push(conta);
-        });
-        let toast = Toast.create({
-          message: "Conta inserida com sucesso",
-          duration: 3000,
-          position: "bottom"
-        });
-        this.nav.present(toast);
+      if ( ! dados ) {
+        return;
       }
-    })
+      new ContasDao().incluir(dados, (dados) => {
+        this.mensagem("Inclusão confirmada");
+        this.lista.push(dados);
+      });
+    });
 
     this.nav.present(modal);
   }
 
-  alterar(obj) : void {
-    let modal = Modal.create(ContasModalPage, {param: obj});
+  alterar(conta) : void {
+    let modal = Modal.create(ContasModalPage, {param: conta});
 
     modal.onDismiss((dados) => {
       if (dados) {
-        this.contas.alterar(dados, (obj) => {
-          alert("Conta alterada com suceso");
+        new ContasDao().alterar(dados, () => {
+          this.mensagem("Alteração confirmada");
         })
       }
     });
@@ -55,15 +47,16 @@ export class ContasPage {
     this.nav.present(modal);
   }
 
-  excluir(obj) : void {
+  excluir(conta) : void {
     let msg = Alert.create({
       title: "Exclusão",
-      message: "Confirma a exclusão da conta "+obj.descricao+"?",
+      message: "Confirma a exclusão da conta "+conta.nome+"?",
       buttons: [{
         text: "Sim",
         handler: () => {
-          this.contas.excluir(obj, (data) => {
-            let pos = this.lista.indexOf(obj);
+          new ContasDao().excluir(conta, () => {
+            this.mensagem("Exclusão confirmada");
+            let pos = this.lista.indexOf(conta);
             this.lista.splice(pos, 1);
           });
         }
@@ -76,5 +69,14 @@ export class ContasPage {
 
   fechar() : void {
     this.view.dismiss();
+  }
+
+  mensagem(msg: string): void {
+    let toast = Toast.create({
+      message : msg,
+      duration: 3000,
+      position: "bottom"
+    });
+    this.nav.present(toast);
   }
 }

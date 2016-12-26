@@ -1,13 +1,33 @@
-<!--
-  Generated template for the CaixaPage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-navbar *navbar>
-  <ion-title>caixa</ion-title>
+  <ion-buttons start>
+    <button (click)="fechar()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-buttons>
+
+  <ion-title>Caixa</ion-title>
 </ion-navbar>
 
 <ion-content padding class="caixa">
-  
+
+  <ion-list>
+
+    <ion-item-sliding  *ngFor="let item of lista" >
+      <ion-item (click)="alterar(item)">
+        {{item.historico}}
+      </ion-item>
+
+      <ion-item-options>
+        <button danger (click)="excluir(item)">
+          <ion-icon name="remove"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <button fab fab-right fab-bottom secondary (click)="incluir()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+
 </ion-content>
